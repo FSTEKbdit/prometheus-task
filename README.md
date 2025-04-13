@@ -1,2 +1,2 @@
 # prometheus-task
-tesk task for Kasper
+test task for Kasper
