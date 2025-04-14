@@ -1,6 +1,3 @@
-import sys
-sys.path.append('/home/vagrant/.local/lib/python3.10/site-packages')
-
 from prometheus_client import start_http_server, Info
 import logging
 import time
@@ -20,7 +17,7 @@ def check_server_type() -> tuple: # определяет где запущен �
             return os_type, machine_type
         
         elif os_type == "Linux":
-            vm_check = os.popen('sudo dmesg 2>/dev/null | grep -i "hypervisor detected" 2>/dev/null').read()    # если это ВМ, то в dmesg будет запись Hypervisor detected
+            vm_check = os.popen('dmesg 2>/dev/null | grep -i "hypervisor detected" 2>/dev/null').read()    # если это ВМ, то в dmesg будет запись Hypervisor detected
             if vm_check != "":
                 machine_type = "Virtual machine"
                 logging.info(f"OS and host type were defined: {os_type}, {machine_type}")
