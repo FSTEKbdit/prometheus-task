@@ -22,6 +22,10 @@ def check_server_type() -> tuple: # определяет где запущен �
                 machine_type = "Virtual machine"
                 logging.info(f"OS and host type were defined: {os_type}, {machine_type}")
                 return os_type, machine_type
+            elif os.path.isfile("/.dockerenv"):   # проверяет есть ли такой файл. Он всегда создается в контейнерах 
+                machine_type = "Container"
+                logging.info(f"OS and host type were defined: {os_type}, {machine_type}")
+                return os_type, machine_type
             else:
                 machine_type = "Phisical server"                # если ничего на linux не подолшо занчит физический сервер
                 logging.info(f"OS and host type were defined: {os_type}, {machine_type}")
